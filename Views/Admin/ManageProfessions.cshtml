@@ -1,0 +1,33 @@
+﻿@model List<string>
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    ViewData["Title"] = "Manage Professions";
+}
+
+<div class="head-title">
+    <div class="left">
+        <h1>Manage Professions</h1>
+    </div>
+</div>
+
+<div class="form-section">
+    <h3>Add New Profession</h3>
+    <form asp-action="AddProfession" method="post">
+        <input type="text" name="professionName" placeholder="Enter profession name" required>
+        <button type="submit" class="btn-add">Add Profession</button>
+    </form>
+
+    <h4>Existing Professions</h4>
+    <ul>
+        @foreach (var profession in Model)
+        {
+            <li>
+                @profession
+                <form asp-action="RemoveProfession" method="post" style="display:inline;">
+                    <input type="hidden" name="professionName" value="@profession" />
+                    <button type="submit" class="btn-remove">Remove</button>
+                </form>
+            </li>
+        }
+    </ul>
+</div>

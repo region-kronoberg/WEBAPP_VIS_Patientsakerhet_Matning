@@ -1,0 +1,142 @@
+﻿@{
+    ViewData["Title"] = "PATIENTSÄKERHETS MÄTNING";
+}
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Fonts -->
+</head>
+<body>
+    <main class="table" id="customers_table">
+        <section class="table__header">
+            <h1>@ViewData["Title"]</h1>
+            
+
+            <!-- Admin-flik synlig endast om användaren är admin -->
+            @if (ViewData["IsAdmin"] as bool? == true)
+            {
+                <div class="admin-tab">
+                    <a href="/Admin/ManageAdmins" class="admin-link">Admin Panel</a>
+
+                </div>
+            }
+
+            <!-- Exportknappar -->
+            <div class="export__file">
+                <label for="export-file" class="export__file-btn" title="Exportera fil"></label>
+                <input type="checkbox" id="export-file">
+                <div class="export__file-options">
+                    <label>Exportera som &nbsp; &#10140;</label
+                    <label for="export-file" id="toEXCEL">EXCEL <img src="~/images/excel.png" alt="Excel Icon"></label>
+                </div>
+            </div>
+        </section>
+
+        <section class="table__body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Observerad person <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Yrkes-kategori <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Vilken omvårdnadssituation är observerad <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Korrekt desinfektion av händerna före patientnära vård och före användning av handskar <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Korrekt desinfektion av händerna efter patientnära vård <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Korrekt användning av handskar vid risk för kontakt med kroppsvätskor <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Korrekt användning av engångs-förkläde av plast/patient-bunden skyddsrock <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Korrekt arbetsdräkt <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Fri från ringar, klockor, armband, bandage och stödskenor <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Naglar korta och fria från nagellack och konstgjort material <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Kort eller uppsatt hår <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Korrekt hygienrutiner <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Korrekt följsamhet till basala klädregler <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Följsamhet till rutiner för säkerhet <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Övriga kommentarer <span class="icon-arrow">&UpArrow;</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamisk generering av 10 rader -->
+                    @for (int i = 1; i <= 10; i++)
+                    {
+                        <tr>
+                            <td>@i</td>
+                            <td>
+                                <select name="yrkes-kategori-@i">
+                                    <option value="" disabled selected>Välj yrkeskategori</option>
+                                    <option value="Sjuksköterska/Barnmorska">Sjuksköterska/Barnmorska</option>
+                                    <option value="Skötare">Skötare</option>
+                                    <option value="Student">Student</option>
+                                    <option value="Tandhygienist">Tandhygienist</option>
+                                    <option value="Tandläkare">Tandläkare</option>
+                                    <option value="Tandsköterska">Tandsköterska</option>
+                                    <option value="Undersköterska/Barnskötare">Undersköterska/Barnskötare</option>
+                                    <option value="Övriga">Övriga</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="omvardnadssituation-@i">
+                                    <option value="" disabled selected>Välj situation</option>
+                                    <option value="Hjälp med ADL">Hjälp med ADL</option>
+                                    <option value="Behandling och undersökning">Behandling och undersökning</option>
+                                    <option value="Blodtryckskontroll">Blodtryckskontroll</option>
+                                    <option value="Provtagning osv">Provtagning osv</option>
+                                    <option value="PVK-sättning">PVK-sättning</option>
+                                </select>
+                            </td>
+
+                            <!-- Kolumner 4-11 med dropdown och "Ja" som förvalt -->
+                            @for (int j = 4; j <= 11; j++)
+                            {
+                                <td>
+                                    <select name="column-@j-@i" onchange="updateColumns12To14(this)">
+                                        <option value="Ja" selected>Ja</option>
+                                        <option value="Nej">Nej</option>
+                                        <option value="Ej relevant">Ej relevant</option>
+                                    </select>
+                                </td>
+                            }
+
+                            <!-- Ny data för de fyra sista kolumnerna -->
+                            <td class="column-12">Ja</td>
+                            <td class="column-13">Ja</td>
+                            <td class="column-14">Ja</td>
+                            <td>
+                                <textarea name="comments-@i" placeholder="Lägg till kommentar här..."></textarea>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+
+        <div class="button-container">
+            <button class="add-row-button circle-btn add-row-btn" onclick="addRow()">+</button>
+            <button class="remove-row-button circle-btn remove-row-btn" onclick="removeRow()">−</button>
+        </div>
+
+    </main>
+
+    <!-- Kontaktinforuta längst ner till höger -->
+    <div class="contact-box">
+        Felrapportering eller förbättringsförslag kontakta via 0470-58 7986 eller <a href="mailto:daniel.aberg@kronoberg.se">daniel.aberg@kronoberg.se</a>
+    </div>
+
+    <!-- Fotnoter för ytterligare information -->
+    <div class="info-box">
+        <p>1. Om det patientnära arbetet vid observationen inte kräver handskar ifylles här "Ej relevant". Detta räknas då som korrekt.</p>
+        <p>2. Om det patientnära arbetet vid observationen inte kräver engångsförkläde eller patientbunden skyddsrock ifylles här "Ej relevant". Detta räknas då som korrekt.</p>
+        <p>3. Korta naglar menas att naglarna inte syns från handflatan. Fri från nagellack inkluderar ofärgat nagellack.</p>
+        <p>4. Nålsättning ex. PVK, SVP, Dialysnål</p>
+        <p>5. Skötsel av infart ex. CVK, CDK, Pickline</p>
+        <p>6. Behandling och undersökning ex. inhalation, ögondroppar, salva, Pep, läkarundersökning mm</p>
+    </div>
+
+
+    <!-- JavaScript-fil för sökning och exportfunktioner -->
+    <script src="~/js/script.js"></script>
+</body>
+</html>

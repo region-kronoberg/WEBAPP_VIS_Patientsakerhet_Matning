@@ -1,0 +1,49 @@
+﻿@model List<string>
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="head-title">
+    <div class="left">
+        <h1>Admin Panel</h1>
+    </div>
+</div>
+
+<div class="table-data">
+    <div class="order">
+        <div class="head">
+            <h3>Admin List</h3>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Admin Username</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var admin in Model)
+                {
+                    <tr>
+                        <td>@admin</td>
+                        <td>
+                            <form asp-action="RemoveAdmin" method="post">
+                                <input type="hidden" name="username" value="@admin" />
+                                <button type="submit" class="btn-remove">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="form-section">
+    <h3>Add New Admin</h3>
+    <form asp-action="AddAdmin" method="post">
+        <input type="email" name="username" placeholder="Enter email" required>
+        <button type="submit" class="btn-add">Add Admin</button>
+    </form>
+</div>

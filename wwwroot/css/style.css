@@ -1,0 +1,237 @@
+/* Grundläggande styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #006633; /* Bakgrundsfärg på sidan */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Huvudcontainer */
+.container {
+    width: 90%;
+    max-width: 1800px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Header-styling */
+.header h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+/* Tabellens allmänna styling */
+main.table {
+    width: 100%;
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    overflow: hidden;
+}
+
+.table__header {
+    width: 100%;
+    background-color: #83B81A;
+    padding: .8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table__body {
+    width: 100%;
+    max-height: calc(70vh - 4rem);
+    background-color: #fffb;
+    margin: .8rem auto;
+    border-radius: .6rem;
+    overflow-y: auto;
+}
+
+/* Kolumnstyling för tabellhuvud */
+thead th {
+    background-color: #2e8b57; /* Bakgrundsfärg för kolumnhuvud */
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    position: sticky;
+    top: 0;
+}
+
+/* Styling för jämna rader */
+tbody tr:nth-child(even) {
+    background-color: #0000000b;
+}
+
+tbody td {
+    padding: 10px;
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: #333;
+    text-align: left;
+    border: none;
+}
+
+/* Kolumnjustering för att behålla layout */
+table th:nth-child(1),
+table td:nth-child(1) {
+    width: 5%;
+}
+
+table th:nth-child(2),
+table td:nth-child(2),
+table th:nth-child(3),
+table td:nth-child(3) {
+    width: 10%;
+}
+
+table th:nth-child(n+4):nth-child(-n+11),
+table td:nth-child(n+4):nth-child(-n+11) {
+    width: 6%;
+}
+
+table th:nth-child(15),
+table td:nth-child(15) {
+    width: 22%;
+}
+
+/* Anpassning för dropdowns och textareas */
+select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #333;
+    font-size: 0.85rem;
+    width: 100%;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23333" d="M2 5L0 1h4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    resize: none;
+}
+
+/* Kontaktinforutan i nedre högra hörnet */
+.contact-box {
+    position: fixed;
+    bottom: 1vh;
+    right: 2vw;
+    background-color: #3f805d;
+    color: #fff;
+    padding: 1vh 1.5vw;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 0.85rem;
+    max-width: 20vw;
+    z-index: 1000;
+}
+
+    .contact-box a {
+        color: #0056b3; /* Blå färg för länken */
+        text-decoration: underline;
+    }
+
+        .contact-box a:hover {
+            color: #2a6fbf; /* Mörkare blå vid hover */
+        }
+
+/* Container för knapparna */
+.button-container {
+    display: flex;
+    justify-content: flex-start; /* Flytta knapparna till vänster */
+    gap: 10px;
+    margin: 15px 0;
+    margin-left: 20px; /* Justerar placeringen åt höger */
+}
+
+/* Basstil för knappar */
+.circle-btn {
+    width: 30px; /* Minska storleken på cirkeln */
+    height: 30px; /* Minska storleken på cirkeln */
+    font-size: 20px; /* Öka storleken på tecknet */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    color: white;
+}
+
+.add-row-btn {
+    background-color: #4CAF50; /* Grön färg för plus */
+}
+
+.remove-row-btn {
+    background-color: #f44336; /* Röd färg för minus */
+}
+
+.circle-btn:hover {
+    transform: scale(1.1); /* Ger en liten förstoringseffekt vid hovring */
+}
+
+/* Informationsruta under tabellen */
+.info-box {
+    position: fixed;
+    bottom: 0.5vh; /* Justerar avståndet från botten för att vara ovanför contact-box */
+    left: 2vw;
+    background-color: rgba(63, 128, 93, 0.85);
+    color: #fff;
+    padding: 1vh 1.5vw;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 0.85rem;
+    max-width: 60vw;
+    z-index: 1000;
+    text-align: left;
+    line-height: 1.5;
+}
+
+
+
+/* Responsiv design för mindre skärmar */
+@media (max-width: 1280px) {
+    .info-box {
+        padding: 15px; /* Minska padding på mindre skärmar */
+        font-size: 0.85rem;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .info-box {
+        max-width: 90%; /* Anpassa bredden för mindre skärmar */
+        font-size: 0.8rem;
+    }
+
+}
