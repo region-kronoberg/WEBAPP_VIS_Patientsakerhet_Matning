@@ -3,17 +3,26 @@ En ASP.NET Core MVC-applikation för att förbättra patientsäkerhetsmätningar
 Applikationen ger administratörer möjlighet att hantera administratörsanvändare och yrkeskategorier, vilket underlättar rapportering och analys av följsamhet till hygienrutiner.
 
 📑 Innehåll
+
 🚀 Funktioner
+
 🔧 Installation
+
 📖 Användning
+
 📂 Struktur
+
 💡 Förbättringar och framtida arbete
+
 ✍️ Författare
+
 🚀 Funktioner
+
 Adminpanel: En central sida för administratörer att hantera andra administratörer och yrkeskategorier.
 Yrkeskategorier: Administratörer kan lägga till och ta bort yrken som dynamiskt uppdateras i dropdown-menyn på huvudsidan.
 Hantera administratörer: Lägga till och ta bort administratörsanvändare från systemet.
 Enhetlig design: Samma sidopanel och navigering för alla adminsidor för enkel navigering.
+
 🔧 Installation
 Förutsättningar
 .NET 6.0 SDK
@@ -46,6 +55,7 @@ Fyll i e-post och klicka Add Admin för att lägga till, eller Remove för att t
 Hantera yrkeskategorier
 
 Under Manage Professions kan du lägga till och ta bort yrken som visas i dropdown-menyn på huvudsidan för patientsäkerhetsmätningar.
+
 📂 Struktur
 Projektet är uppbyggt enligt ASP.NET Core MVC-arkitektur med controllers, views och models.
 
@@ -61,9 +71,11 @@ Views/Admin/ManageProfessions.cshtml - Sidan för hantering av yrken.
 CSS och styling
 
 wwwroot/css/admin-style.css - Styling för adminpanelen.
+
 💡 Förbättringar och framtida arbete
 Autentisering och roller: Lägg till autentisering för att hantera olika användarrollers åtkomst.
 Database Support: Koppla upp systemet mot en databas för permanent lagring av administratörer och yrkeskategorier.
 Logging och Error Handling: Förbättra systemets tillförlitlighet genom loggning och bättre felhantering.
+
 ✍️ Författare
-Projektet är utvecklat av
+Projektet är utvecklat av Jsson15
