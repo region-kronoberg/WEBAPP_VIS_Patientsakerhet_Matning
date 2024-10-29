@@ -15,14 +15,12 @@
     <main class="table" id="customers_table">
         <section class="table__header">
             <h1>@ViewData["Title"]</h1>
-            
 
             <!-- Admin-flik synlig endast om användaren är admin -->
             @if (ViewData["IsAdmin"] as bool? == true)
             {
                 <div class="admin-tab">
-                    <a href="/Admin/ManageAdmins" class="admin-link">Admin Panel</a>
-
+                    <a href="@Url.Action("ManageAdmins", "Admin")" class="admin-link">Admin Panel</a>
                 </div>
             }
 
@@ -31,7 +29,7 @@
                 <label for="export-file" class="export__file-btn" title="Exportera fil"></label>
                 <input type="checkbox" id="export-file">
                 <div class="export__file-options">
-                    <label>Exportera som &nbsp; &#10140;</label
+                    <label>Exportera som &nbsp; &#10140;</label>
                     <label for="export-file" id="toEXCEL">EXCEL <img src="~/images/excel.png" alt="Excel Icon"></label>
                 </div>
             </div>
@@ -117,7 +115,6 @@
             <button class="add-row-button circle-btn add-row-btn" onclick="addRow()">+</button>
             <button class="remove-row-button circle-btn remove-row-btn" onclick="removeRow()">−</button>
         </div>
-
     </main>
 
     <!-- Kontaktinforuta längst ner till höger -->
@@ -134,7 +131,6 @@
         <p>5. Skötsel av infart ex. CVK, CDK, Pickline</p>
         <p>6. Behandling och undersökning ex. inhalation, ögondroppar, salva, Pep, läkarundersökning mm</p>
     </div>
-
 
     <!-- JavaScript-fil för sökning och exportfunktioner -->
     <script src="~/js/script.js"></script>

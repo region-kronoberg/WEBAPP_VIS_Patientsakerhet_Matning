@@ -4,30 +4,66 @@
     ViewData["Title"] = "Manage Professions";
 }
 
-<div class="head-title">
-    <div class="left">
-        <h1>Manage Professions</h1>
-    </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Professions</title>
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/admin-style.css">
+</head>
+<body>
 
-<div class="form-section">
-    <h3>Add New Profession</h3>
-    <form asp-action="AddProfession" method="post">
-        <input type="text" name="professionName" placeholder="Enter profession name" required>
-        <button type="submit" class="btn-add">Add Profession</button>
-    </form>
+    <section id="content">
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Manage Professions</h1>
+                </div>
+            </div>
 
-    <h4>Existing Professions</h4>
-    <ul>
-        @foreach (var profession in Model)
-        {
-            <li>
-                @profession
-                <form asp-action="RemoveProfession" method="post" style="display:inline;">
-                    <input type="hidden" name="professionName" value="@profession" />
-                    <button type="submit" class="btn-remove">Remove</button>
+            <!-- Form för att lägga till ny yrkeskategori -->
+            <div class="form-section">
+                <h3>Add New Profession</h3>
+                <form asp-action="AddProfession" method="post">
+                    <input type="text" name="professionName" placeholder="Enter profession name" required>
+                    <button type="submit" class="btn-add">Add Profession</button>
                 </form>
-            </li>
-        }
-    </ul>
-</div>
+            </div>
+
+            <!-- Tabell för befintliga yrkeskategorier -->
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3>Existing Professions</h3>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Profession Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var profession in Model)
+                            {
+                                <tr>
+                                    <td>@profession</td>
+                                    <td>
+                                        <form asp-action="RemoveProfession" method="post" style="display:inline;">
+                                            <input type="hidden" name="professionName" value="@profession" />
+                                            <button type="submit" class="btn-remove">Remove</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </section>
+
+</body>
+</html>

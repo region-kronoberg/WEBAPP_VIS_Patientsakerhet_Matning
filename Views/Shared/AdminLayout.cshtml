@@ -16,10 +16,10 @@
             <span class="text">Admin</span>
         </a>
         <ul class="side-menu top">
-            <li class="@(ViewData["Title"] == "Dashboard" ? "active" : "")">
-                <a href="@Url.Action("ManageAdmins", "Admin")">
-                    <i class='bx bxs-dashboard'></i>
-                    <span class="text">Dashboard</span>
+            <li class="@(ViewData["Title"] == "Homepage" ? "active" : "")">
+                <a href="@Url.Action("Index", "Form")">
+                    <i class='bx bxs-home'></i>
+                    <span class="text">Homepage</span>
                 </a>
             </li>
             <li class="@(ViewData["Title"] == "Manage Admins" ? "active" : "")">
