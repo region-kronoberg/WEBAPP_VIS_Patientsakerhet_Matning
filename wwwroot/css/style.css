@@ -235,3 +235,42 @@ textarea {
     }
 
 }
+
+
+.select-date-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    flex-wrap: nowrap !important;
+}
+
+    .select-date-container label {
+        white-space: nowrap !important;
+        margin-right: 5px !important;
+    }
+
+    .select-date-container select {
+        width: 150px !important;
+    }
+
+    .select-date-container .btn-ok {
+        padding: 4px 12px;
+        background-color: #3498db;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .select-date-container .btn-ok:hover {
+            background-color: #2980b9;
+        }
+
+
+
+
+
+
+

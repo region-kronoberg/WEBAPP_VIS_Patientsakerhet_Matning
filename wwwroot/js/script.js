@@ -1,5 +1,7 @@
 ﻿// Simulerad admin-kontroll - sätt denna till true om användaren är admin
 const isAdmin = true; // Ändra till false för att dölja adminfunktioner
+// Deklarera rowCount högst upp i filen, innan några funktioner använder den
+let rowCount = 10; // Börja med 10 rader
 
 // Göm eller visa adminfunktioner beroende på om användaren är admin
 document.addEventListener('DOMContentLoaded', () => {
@@ -65,27 +67,49 @@ function sortTable(column, sort_asc) {
 // 3. Uppdatering av kolumner 12-14 baserat på val i kolumner 4-11
 function updateColumns12To14(selectedElement) {
     const row = selectedElement.closest('tr'); // Hämta aktuell rad
-    const dropdowns = row.querySelectorAll('td:nth-child(n+4):nth-child(-n+11) select');
+    const dropdowns4to7 = row.querySelectorAll('td:nth-child(n+4):nth-child(-n+7) select');
+    const dropdowns8to11 = row.querySelectorAll('td:nth-child(n+8):nth-child(-n+11) select');
+    const dropdowns4to11 = row.querySelectorAll('td:nth-child(n+4):nth-child(-n+11) select');
+
     const column12 = row.querySelector('.column-12');
     const column13 = row.querySelector('.column-13');
     const column14 = row.querySelector('.column-14');
 
-    let hasNej = false;
-    let allJaOrEjRelevant = true;
+    let anyNejIn4to7 = false;
+    let anyNejIn8to11 = false;
+    let anyNejIn4to11 = false;
 
-    dropdowns.forEach(dropdown => {
+    // Kontrollera om någon av kolumnerna 4-7 har värdet "Nej"
+    dropdowns4to7.forEach(dropdown => {
         if (dropdown.value === "Nej") {
-            hasNej = true;
-            allJaOrEjRelevant = false;
-        } else if (dropdown.value !== "Ej relevant") {
-            allJaOrEjRelevant = allJaOrEjRelevant && dropdown.value === "Ja";
+            anyNejIn4to7 = true;
         }
     });
 
-    column12.textContent = allJaOrEjRelevant ? "Ja" : hasNej ? "Nej" : "Ja";
-    column13.textContent = allJaOrEjRelevant ? "Ja" : hasNej ? "Nej" : "Ja";
-    column14.textContent = allJaOrEjRelevant ? "Ja" : hasNej ? "Nej" : "Ja";
+    // Kontrollera om någon av kolumnerna 8-11 har värdet "Nej"
+    dropdowns8to11.forEach(dropdown => {
+        if (dropdown.value === "Nej") {
+            anyNejIn8to11 = true;
+        }
+    });
+
+    // Kontrollera om någon av kolumnerna 4-11 har värdet "Nej"
+    dropdowns4to11.forEach(dropdown => {
+        if (dropdown.value === "Nej") {
+            anyNejIn4to11 = true;
+        }
+    });
+
+    // Sätt kolumn 12 baserat på om någon kolumn 4-11 är "Nej"
+    column12.textContent = anyNejIn4to11 ? "Nej" : "Ja";
+
+    // Sätt kolumn 13 baserat på om någon kolumn 4-7 är "Nej"
+    column13.textContent = anyNejIn4to7 ? "Nej" : "Ja";
+
+    // Sätt kolumn 14 baserat på om någon kolumn 8-11 är "Nej"
+    column14.textContent = anyNejIn8to11 ? "Nej" : "Ja";
 }
+
 
 // 4. Exportera HTML-tabellen till PDF
 const pdf_btn = document.querySelector('#toPDF');
@@ -171,13 +195,10 @@ function downloadFile(data, fileType, fileName) {
     document.body.removeChild(a);
 }
 
-// 8. Funktion för att lägga till och ta bort rader
-let rowCount = 10; // Börja med 10 rader
-
 function addRow() {
-    if (!isAdmin) return; // Avbryt om användaren inte är admin
+    rowCount++; // Öka rowCount när en ny rad läggs till
+    console.log("Adding row. Current rowCount:", rowCount); // Debug
 
-    rowCount++;
     const tableBody = document.querySelector('tbody');
 
     const newRow = document.createElement('tr');
@@ -225,8 +246,7 @@ function addRow() {
 }
 
 function removeRow() {
-    if (!isAdmin) return; // Avbryt om användaren inte är admin
-
+    console.log("Attempting to remove row. Current rowCount:", rowCount); // Debug
     const tableBody = document.querySelector('tbody');
     if (rowCount > 1) { // Se till att minst en rad finns kvar
         tableBody.removeChild(tableBody.lastElementChild);
@@ -235,3 +255,5 @@ function removeRow() {
         alert("Det finns inga rader att ta bort!");
     }
 }
+
+

@@ -16,34 +16,39 @@
             <span class="text">Admin</span>
         </a>
         <ul class="side-menu top">
-            <li class="@(ViewData["Title"] == "Homepage" ? "active" : "")">
+            <li class="@(ViewData["Title"] == "Startsida" ? "active" : "")">
                 <a href="@Url.Action("Index", "Form")">
                     <i class='bx bxs-home'></i>
-                    <span class="text">Homepage</span>
+                    <span class="text">Startsida</span>
                 </a>
             </li>
-            <li class="@(ViewData["Title"] == "Manage Admins" ? "active" : "")">
+            <li class="@(ViewData["Title"] == "Hantera Admins" ? "active" : "")">
                 <a href="@Url.Action("ManageAdmins", "Admin")">
                     <i class='bx bxs-user-plus'></i>
-                    <span class="text">Manage Admins</span>
+                    <span class="text">Hantera Admins</span>
                 </a>
             </li>
-            <li class="@(ViewData["Title"] == "Manage Professions" ? "active" : "")">
+            <li class="@(ViewData["Title"] == "Hantera Yrken" ? "active" : "")">
                 <a href="@Url.Action("ManageProfessions", "Admin")">
                     <i class='bx bxs-briefcase'></i>
-                    <span class="text">Manage Professions</span>
+                    <span class="text">Hantera Yrken</span>
                 </a>
             </li>
-        </ul>
-        <ul class="side-menu">
-            <li>
-                <a href="#" class="logout">
-                    <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
+            <li class="@(ViewData["Title"] == "Hantera Hus" ? "active" : "")">
+                <a href="@Url.Action("ManageBuildings", "Admin")">
+                    <i class='bx bxs-building-house'></i>
+                    <span class="text">Hantera Hus</span>
+                </a>
+            </li>
+            <li class="@(ViewData["Title"] == "Hantera Avdelning" ? "active" : "")">
+                <a href="@Url.Action("ManageDepartments", "Admin")">
+                    <i class='bx bxs-door-open'></i>
+                    <span class="text">Hantera Avdelning</span>
                 </a>
             </li>
         </ul>
     </section>
+
     <!-- END SIDEBAR -->
     <!-- CONTENT -->
     <section id="content">

@@ -10,6 +10,39 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Fonts -->
+    <!-- Inline CSS to ensure .select-date-container aligns horizontally -->
+    <style>
+        .select-date-container {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            gap: 10px !important;
+            flex-wrap: nowrap !important; /* Prevents wrapping */
+        }
+
+            .select-date-container label {
+                white-space: nowrap !important; /* Prevents label text from wrapping */
+                margin-right: 5px !important; /* Small space between label and input */
+            }
+
+            .select-date-container select {
+                width: 150px !important; /* Set consistent width for dropdowns */
+            }
+
+            .select-date-container .btn-ok {
+                padding: 4px 12px;
+                background-color: #3498db;
+                color: #ffffff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+                .select-date-container .btn-ok:hover {
+                    background-color: #2980b9;
+                }
+    </style>
 </head>
 <body>
     <main class="table" id="customers_table">
@@ -23,6 +56,35 @@
                     <a href="@Url.Action("ManageAdmins", "Admin")" class="admin-link">Admin Panel</a>
                 </div>
             }
+
+            <!-- Välj Månad och År för att gå tillbaka till tidigare ark -->
+            <div class="select-date-container">
+                <label for="select-month">Månad:</label>
+                <select id="select-month">
+                    <option value="1">Januari</option>
+                    <option value="2">Februari</option>
+                    <option value="3">Mars</option>
+                    <option value="4">April</option>
+                    <option value="5">Maj</option>
+                    <option value="6">Juni</option>
+                    <option value="7">Juli</option>
+                    <option value="8">Augusti</option>
+                    <option value="9">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+
+                <label for="select-year">År:</label>
+                <select id="select-year">
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                </select>
+
+                <button class="btn-ok">OK</button>
+            </div>
 
             <!-- Exportknappar -->
             <div class="export__file">
@@ -45,14 +107,14 @@
                         <th>Korrekt desinfektion av händerna före patientnära vård och före användning av handskar <span class="icon-arrow">&UpArrow;</span></th>
                         <th>Korrekt desinfektion av händerna efter patientnära vård <span class="icon-arrow">&UpArrow;</span></th>
                         <th>Korrekt användning av handskar vid risk för kontakt med kroppsvätskor <span class="icon-arrow">&UpArrow;</span></th>
-                        <th>Korrekt användning av engångs-förkläde av plast/patient-bunden skyddsrock <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Korrekt användning av engångs-förkläde av plast/patientbunden skyddsrock <span class="icon-arrow">&UpArrow;</span></th>
                         <th>Korrekt arbetsdräkt <span class="icon-arrow">&UpArrow;</span></th>
                         <th>Fri från ringar, klockor, armband, bandage och stödskenor <span class="icon-arrow">&UpArrow;</span></th>
                         <th>Naglar korta och fria från nagellack och konstgjort material <span class="icon-arrow">&UpArrow;</span></th>
                         <th>Kort eller uppsatt hår <span class="icon-arrow">&UpArrow;</span></th>
-                        <th>Korrekt hygienrutiner <span class="icon-arrow">&UpArrow;</span></th>
-                        <th>Korrekt följsamhet till basala klädregler <span class="icon-arrow">&UpArrow;</span></th>
-                        <th>Följsamhet till rutiner för säkerhet <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Korrekt följsamhet till basala hygienrutiner och klädregler (Korrekt i samtliga steg) <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Korrekt följsamhet till basala hygienrutiner (Korrekt i samtliga steg) <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Korrekt följsamhet till basala klädregler (Korrekt i samtliga steg) <span class="icon-arrow">&UpArrow;</span></th>
                         <th>Övriga kommentarer <span class="icon-arrow">&UpArrow;</span></th>
                     </tr>
                 </thead>
@@ -115,6 +177,7 @@
             <button class="add-row-button circle-btn add-row-btn" onclick="addRow()">+</button>
             <button class="remove-row-button circle-btn remove-row-btn" onclick="removeRow()">−</button>
         </div>
+
     </main>
 
     <!-- Kontaktinforuta längst ner till höger -->
@@ -132,7 +195,9 @@
         <p>6. Behandling och undersökning ex. inhalation, ögondroppar, salva, Pep, läkarundersökning mm</p>
     </div>
 
-    <!-- JavaScript-fil för sökning och exportfunktioner -->
+
+
+    <!-- Link to external JavaScript file -->
     <script src="~/js/script.js"></script>
 </body>
 </html>

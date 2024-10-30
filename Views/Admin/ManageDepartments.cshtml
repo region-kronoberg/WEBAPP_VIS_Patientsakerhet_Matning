@@ -1,0 +1,62 @@
+﻿@model List<string>
+<!-- Justera modellen om du har en specifik lista för avdelningar -->
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    ViewData["Title"] = "Hantera Avdelning";
+}
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>Hantera Avdelning</title>
+</head>
+<body>
+    <section id="content">
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Hantera Avdelning</h1>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3>Lägg till ny avdelning</h3>
+                <form asp-action="AddDepartment" method="post">
+                    <input type="text" name="departmentName" placeholder="Ange avdelningsnamn" required>
+                    <button type="submit" class="btn-add">Lägg till Avdelning</button>
+                </form>
+            </div>
+
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3>Existerande Avdelningar</h3>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Avdelningsnamn</th>
+                                <th>Åtgärd</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var department in Model)
+                            {
+                                <tr>
+                                    <td>@department</td>
+                                    <td>
+                                        <form asp-action="RemoveDepartment" method="post" style="display:inline;">
+                                            <input type="hidden" name="departmentName" value="@department" />
+                                            <button type="submit" class="btn-remove">Ta bort</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </section>
+</body>
+</html>

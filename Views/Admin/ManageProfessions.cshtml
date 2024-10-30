@@ -1,7 +1,7 @@
 ﻿@model List<string>
 @{
     Layout = "~/Views/Shared/AdminLayout.cshtml";
-    ViewData["Title"] = "Manage Professions";
+    ViewData["Title"] = "Hantera Yrken";
 }
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Professions</title>
+    <title>Hantera Yrken</title>
     <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/admin-style.css">
 </head>
@@ -19,16 +19,16 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Manage Professions</h1>
+                    <h1>Lägg till yrken</h1>
                 </div>
             </div>
 
             <!-- Form för att lägga till ny yrkeskategori -->
             <div class="form-section">
-                <h3>Add New Profession</h3>
-                <form asp-action="AddProfession" method="post">
-                    <input type="text" name="professionName" placeholder="Enter profession name" required>
-                    <button type="submit" class="btn-add">Add Profession</button>
+                <h3>Lägg till yrken</h3>
+                <form asp-action="Lägg till" method="post">
+                    <input type="text" name="professionName" placeholder="Namnge ett yrke" required>
+                    <button type="submit" class="btn-add">Lägg till yrken</button>
                 </form>
             </div>
 
@@ -36,12 +36,12 @@
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3>Existing Professions</h3>
+                        <h3>Befintliga Yrken</h3>
                     </div>
                     <table>
                         <thead>
                             <tr>
-                                <th>Profession Name</th>
+                                <th>Yrken</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -53,7 +53,7 @@
                                     <td>
                                         <form asp-action="RemoveProfession" method="post" style="display:inline;">
                                             <input type="hidden" name="professionName" value="@profession" />
-                                            <button type="submit" class="btn-remove">Remove</button>
+                                            <button type="submit" class="btn-remove">Ta Bort</button>
                                         </form>
                                     </td>
                                 </tr>

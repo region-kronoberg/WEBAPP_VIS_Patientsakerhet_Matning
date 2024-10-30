@@ -1,0 +1,62 @@
+﻿@model List<string> 
+<!-- Justera modellen om du har en specifik lista för byggnader -->
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    ViewData["Title"] = "Hantera Hus";
+}
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>Hantera Hus</title>
+</head>
+<body>
+    <section id="content">
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Hantera Hus</h1>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3>Lägg till nytt hus</h3>
+                <form asp-action="AddBuilding" method="post">
+                    <input type="text" name="buildingName" placeholder="Ange husets namn" required>
+                    <button type="submit" class="btn-add">Lägg till Hus</button>
+                </form>
+            </div>
+
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3>Existerande Hus</h3>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Husnamn</th>
+                                <th>Åtgärd</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var building in Model)
+                            {
+                                <tr>
+                                    <td>@building</td>
+                                    <td>
+                                        <form asp-action="RemoveBuilding" method="post" style="display:inline;">
+                                            <input type="hidden" name="buildingName" value="@building" />
+                                            <button type="submit" class="btn-remove">Ta bort</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </section>
+</body>
+</html>
